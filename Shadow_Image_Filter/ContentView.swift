@@ -14,7 +14,7 @@ struct ContentView: View {
 	@State private var shadowPoints: Double = 0
 	
 	var body: some View {
-		ZStack{
+		ZStack {
 			VStack {
 				HStack {
 					Rectangle()
@@ -37,7 +37,8 @@ struct ContentView: View {
 					in: -100...100,
 					step: 1
 				) { _ in
-					updateImage()
+					// will update image only after slider was released
+					// updateImage()
 				}
 				.tint(tintColor(for: highlightPoints))
 				.padding()
@@ -46,28 +47,14 @@ struct ContentView: View {
 					.font(.headline)
 					.foregroundStyle(.white)
 				
-				Slider(
-					value: $shadowPoints,
-					in: -100...100,
-					step: 1
-				) { _ in
-					updateImage()
-				}
-				.tint(tintColor(for: shadowPoints))
-				.padding()
-				
-
-				
-				Text("Shadow intensity: \(Int(shadowPoints))")
-					.font(.headline)
-					.foregroundStyle(.white)
-				
-				
 			} //: VStack
 			.padding()
 			
 		} //: ZStack
 		.ignoresSafeArea()
+		.onChange(of: highlightPoints) { _, _ in
+			updateImage()
+		}
 	}
 	
 	func tintColor(for intensityPoints: Double) -> Color {
