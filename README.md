@@ -1,6 +1,6 @@
 # Shadow Image Filter
 
-is an example of how to make fast photo filter with metal
+This repo is an example of how to make fast photo filter with metal
 
 filter highlight - makes light pixels darker or lighter depends on Slider
 
